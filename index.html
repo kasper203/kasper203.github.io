@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tic tac toe</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>Kryds og bolle-spillet</h1>
+        <table id="game-board">
+            <tr>
+                <td onclick="onClick(this)">
+                    <span>(0,2)</span>
+                </td>
+                <td onclick="onClick(this)">
+                    <span>(1,2)</span>
+                </td>
+                <td onclick="onClick(this)">
+                    <span>(2,2)</span>
+                </td>
+            </tr>
+            <tr>
+                <td onclick="onClick(this)">
+                    <span>(0,1)</span>
+                </td>
+                <td onclick="onClick(this)">
+                    <span>(1,1)</span>
+                </td>
+                <td onclick="onClick(this)">
+                    <span>(2,1)</span>
+                </td>
+            </tr>
+            <tr>
+                <td onclick="onClick(this)">
+                    <span>(0,0)</span>
+                </td>
+                <td onclick="onClick(this)">
+                    <span>(1,0)</span>
+                </td>
+                <td onclick="onClick(this)">
+                    <span>(2,0)</span>
+                </td>
+            </tr>
+        </table>
+        <div>
+            <br>
+            <label>
+                Besked:
+                <p id="messageContainer"></p>
+            </label>
+        </div>
+    </div>
+
+    <script src="helper.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

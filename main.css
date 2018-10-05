@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+html {
+  font-family: 'Roboto', sans-serif;
+}
+.container {
+  width: 610px;
+  margin: 0 auto;
+}
+table {
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+td {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+span {
+  position: absolute;
+  top: 5px;
+  color: #bcbcbc;
+}
+
+h1 {
+  text-align: center;
+}
+
+td > p {
+  text-align: center;
+  font-size: 3.5em;
+}
