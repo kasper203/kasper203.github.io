@@ -39,6 +39,7 @@ function clearTd(td) {
   }
 }
 
+
 function showMessage(message) {
   const messageContainer = document.getElementById('messageContainer');
   messageContainer.innerHTML = message;

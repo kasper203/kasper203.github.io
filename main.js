@@ -8,40 +8,134 @@ for (let i = 0; i <= 8; i++) {
   const y = getYCoordinate(i);
   gameBoard[x][y] = boardElements[i];
 }
+let xTurn = true
+let oTurn = false
 
+let xWins = 0;
+let oWins = 0;
+
+let clicks = 0
+let xWon = false;
+let oWon = false;
 // 1. Tjek at der ikke allerede er trykket på feltet
 // 2. Afgør om det der skal sættes et kryds eller en bolle
 function onClick(td) {
-  td.clicked = true;
+  if (td.clicked || xWon || oWon) {
+    return;
+  }
+  clicks = clicks + 1
 
+  td.clicked = true;
   // Funktionen sætter et O på et felt
   //   putOInTd(td);
 
-  // Funktionen sætter et X på et felt
-  putXInTd(td);
+  if (xTurn) {
+    td.x = true
+    putXInTd(td)
+    xTurn = false
+    oTurn = true
 
-  // Spillet opdaterer efter hvert tryk
-  updateGame();
-}
-
-let didSomeoneWin = false;
-function updateGame() {
-  // 2. Tjek om der er en der har vundet
-  //  2.1 Hvis der er en der har vundet, vis en besked, og lad spillet starte forfra
-  if (didSomeoneWin) {
+  } else if (oTurn) {
+    xTurn = true
+    oTurn = false
+    putOInTd(td)
+    td.o = true
+  }
+  if (clicks === 9) {
+    showMessage('Spillet er uafgjort, opdater for at starte forfra')
   }
 
-  didSomeoneWin = true;
-  // 3. Tjek om alle felter er trykket på, dvs. spillet er uafgjort
+
+
+  if ((gameBoard[0][2].x && gameBoard[1][2].x && gameBoard[2][2].x) ||
+    (gameBoard[0][1].x && gameBoard[1][1].x && gameBoard[2][1].x) ||
+    (gameBoard[0][0].x && gameBoard[1][0].x && gameBoard[2][0].x) ||
+    (gameBoard[0][2].x && gameBoard[0][1].x && gameBoard[0][0].x)) {
+    xWon = true;
+  }
+
+
+  if (gameBoard[1][2].x && gameBoard[1][1].x && gameBoard[1][0].x) {
+    xWon = true;
+  }
+
+  if (gameBoard[2][2].x && gameBoard[2][1].x && gameBoard[2][0].x) {
+    xWon = true;
+  }
+  if (gameBoard[0][2].x && gameBoard[1][1].x && gameBoard[2][0].x) {
+    xWon = true;
+  }
+  if (gameBoard[2][2].x && gameBoard[1][1].x && gameBoard[0][0].x) {
+    xWon = true;
+  }
+
+
+  if (gameBoard[0][2].o && gameBoard[1][2].o && gameBoard[2][2].o) {
+    oWon = true;
+  }
+  if (gameBoard[0][1].o && gameBoard[1][1].o && gameBoard[2][1].o) {
+    oWon = true;
+  }
+
+  if (gameBoard[0][0].o && gameBoard[1][0].o && gameBoard[2][0].o) {
+    oWon = true;
+  }
+
+  if (gameBoard[0][2].o && gameBoard[0][1].o && gameBoard[0][0].o) {
+    oWon = true;
+  }
+  if (gameBoard[1][2].o && gameBoard[1][1].o && gameBoard[1][0].o) {
+    oWon = true;
+  }
+
+  if (gameBoard[2][2].o && gameBoard[2][1].o && gameBoard[2][0].o) {
+    oWon = true;
+  }
+  if (gameBoard[0][2].o && gameBoard[1][1].o && gameBoard[2][0].o) {
+    oWon = true;
+  }
+  if (gameBoard[2][2].o && gameBoard[1][1].o && gameBoard[0][0].o) {
+    oWon = true;
+  }
+
+  if (oWon) {
+    oWins++;
+    showMessage('o har vundet!')
+    const element = document.getElementById('numberOfOWins');
+    element.innerHTML = oWins;
+  }
+  if (xWon) {
+    xWins++;
+    showMessage('x har vundet!')
+    const element = document.getElementById('numberOfXWins');
+    element.innerHTML = xWins;
+  }
 }
 
-function showVictoryMessage() {
-  // 4. Skriv at der er en der har vundet
-}
+
 
 function resetGame() {
-  // 5 Nulstil spillet til start
-  // 5.1 Sæt alle felter til ikke at have kryds og boller
-  // 5.2 Sæt alle felter til ikke at have været trykket på
-  // 5.3 Nulstil
+  clicks = 0;
+  xTurn = true;
+  oTurn = false;
+  xWon = false;
+  oWon = false;
+  showMessage('');
+
+  for (let i = 0; i <= 8; i++) {
+
+    boardElements[i].x = false;
+    boardElements[i].o = false;
+    boardElements[i].clicked = false;
+    clearTd(boardElements[i]);
+  }
+}
+
+function resetScore() {
+  xWins = 0
+  oWins = 0
+  const element = document.getElementById('numberOfXWins');
+  element.innerHTML = xWins;
+  const element1 = document.getElementById('numberOfOWins');
+  element1.innerHTML = oWins;
 }
