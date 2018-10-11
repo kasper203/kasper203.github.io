@@ -42,7 +42,7 @@ function onClick(td) {
     td.o = true
   }
   if (clicks === 9) {
-    showMessage('Spillet er uafgjort, opdater for at starte forfra')
+    showMessage('Spillet er uafgjort, tryk paa nulstil for at starte forfra')
   }
 
 
