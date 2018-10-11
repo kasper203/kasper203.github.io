@@ -25,6 +25,8 @@ function onClick(td) {
   }
   clicks = clicks + 1
 
+  // td.className = 'winningTd';
+
   td.clicked = true;
   // Funktionen sætter et O på et felt
   //   putOInTd(td);
@@ -47,55 +49,112 @@ function onClick(td) {
 
 
 
-  if ((gameBoard[0][2].x && gameBoard[1][2].x && gameBoard[2][2].x) ||
-    (gameBoard[0][1].x && gameBoard[1][1].x && gameBoard[2][1].x) ||
-    (gameBoard[0][0].x && gameBoard[1][0].x && gameBoard[2][0].x) ||
-    (gameBoard[0][2].x && gameBoard[0][1].x && gameBoard[0][0].x)) {
+  if (gameBoard[0][2].x && gameBoard[1][2].x && gameBoard[2][2].x) {
+    gameBoard[0][2].className = 'winningTd'
+    gameBoard[1][2].className = 'winningTd'
+    gameBoard[2][2].className = 'winningTd'
     xWon = true;
+  }
+
+  if(gameBoard[0][2].x && gameBoard[0][1].x && gameBoard[0][0].x) {
+    xWon = true;
+    gameBoard[0][2].className = 'winningTd'
+    gameBoard[0][1].className = 'winningTd'
+    gameBoard[0][0].className = 'winningTd'
+  }
+
+  if(gameBoard[0][0].x && gameBoard[1][0].x && gameBoard[2][0].x) {
+    xWon = true;
+    gameBoard[0][0].className = 'winningTd'
+    gameBoard[1][0].className = 'winningTd'
+    gameBoard[2][0].className = 'winningTd'
+  }
+
+  if(gameBoard[0][1].x && gameBoard[1][1].x && gameBoard[2][1].x) {
+    xWon = true;
+    gameBoard[0][1].className = 'winningTd'
+    gameBoard[1][1].className = 'winningTd'
+    gameBoard[2][1].className = 'winningTd'
   }
 
 
   if (gameBoard[1][2].x && gameBoard[1][1].x && gameBoard[1][0].x) {
     xWon = true;
+    gameBoard[1][2].className = 'winningTd'
+    gameBoard[1][1].className = 'winningTd'
+    gameBoard[1][0].className = 'winningTd'
   }
 
   if (gameBoard[2][2].x && gameBoard[2][1].x && gameBoard[2][0].x) {
     xWon = true;
+    gameBoard[2][2].className = 'winningTd'
+    gameBoard[2][1].className = 'winningTd'
+    gameBoard[2][0].className = 'winningTd'
   }
   if (gameBoard[0][2].x && gameBoard[1][1].x && gameBoard[2][0].x) {
     xWon = true;
+    gameBoard[0][2].className = 'winningTd'
+    gameBoard[1][1].className = 'winningTd'
+    gameBoard[2][0].className = 'winningTd'
   }
   if (gameBoard[2][2].x && gameBoard[1][1].x && gameBoard[0][0].x) {
     xWon = true;
+    gameBoard[2][2].className = 'winningTd'
+    gameBoard[1][1].className = 'winningTd'
+    gameBoard[0][0].className = 'winningTd'
   }
 
 
   if (gameBoard[0][2].o && gameBoard[1][2].o && gameBoard[2][2].o) {
     oWon = true;
+    gameBoard[0][2].className = 'winningTd'
+    gameBoard[1][2].className = 'winningTd'
+    gameBoard[2][2].className = 'winningTd'
   }
   if (gameBoard[0][1].o && gameBoard[1][1].o && gameBoard[2][1].o) {
     oWon = true;
+    gameBoard[0][1].className = 'winningTd'
+    gameBoard[1][1].className = 'winningTd'
+    gameBoard[2][1].className = 'winningTd'
   }
 
   if (gameBoard[0][0].o && gameBoard[1][0].o && gameBoard[2][0].o) {
     oWon = true;
+    gameBoard[0][0].className = 'winningTd'
+    gameBoard[1][0].className = 'winningTd'
+    gameBoard[2][0].className = 'winningTd'
   }
 
   if (gameBoard[0][2].o && gameBoard[0][1].o && gameBoard[0][0].o) {
     oWon = true;
+    gameBoard[0][2].className = 'winningTd'
+    gameBoard[0][1].className = 'winningTd'
+    gameBoard[0][0].className = 'winningTd'
   }
   if (gameBoard[1][2].o && gameBoard[1][1].o && gameBoard[1][0].o) {
     oWon = true;
+    gameBoard[1][2].className = 'winningTd'
+    gameBoard[1][1].className = 'winningTd'
+    gameBoard[1][0].className = 'winningTd'
   }
 
   if (gameBoard[2][2].o && gameBoard[2][1].o && gameBoard[2][0].o) {
     oWon = true;
+    gameBoard[2][2].className = 'winningTd'
+    gameBoard[2][1].className = 'winningTd'
+    gameBoard[2][0].className = 'winningTd'
   }
   if (gameBoard[0][2].o && gameBoard[1][1].o && gameBoard[2][0].o) {
     oWon = true;
+    gameBoard[0][2].className = 'winningTd'
+    gameBoard[1][1].className = 'winningTd'
+    gameBoard[2][0].className = 'winningTd'
   }
   if (gameBoard[2][2].o && gameBoard[1][1].o && gameBoard[0][0].o) {
     oWon = true;
+    gameBoard[2][2].className = 'winningTd'
+    gameBoard[1][1].className = 'winningTd'
+    gameBoard[0][0].className = 'winningTd'
   }
 
   if (oWon) {
@@ -123,7 +182,7 @@ function resetGame() {
   showMessage('');
 
   for (let i = 0; i <= 8; i++) {
-
+boardElements[i].className = ''
     boardElements[i].x = false;
     boardElements[i].o = false;
     boardElements[i].clicked = false;
