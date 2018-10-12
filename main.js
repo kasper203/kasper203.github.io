@@ -17,6 +17,8 @@ let oWins = 0;
 let clicks = 0
 let xWon = false;
 let oWon = false;
+
+let draws = 0
 // 1. Tjek at der ikke allerede er trykket på feltet
 // 2. Afgør om det der skal sættes et kryds eller en bolle
 function onClick(td) {
@@ -43,9 +45,8 @@ function onClick(td) {
     putOInTd(td)
     td.o = true
   }
-  if (clicks === 9) {
-    showMessage('Spillet er uafgjort, tryk paa nulstil for at starte forfra')
-  }
+
+
 
 
 
@@ -169,6 +170,13 @@ function onClick(td) {
     const element = document.getElementById('numberOfXWins');
     element.innerHTML = xWins;
   }
+
+  if (clicks === 9 && !xWon && !oWon) {
+    showMessage('Spillet er uafgjort, tryk paa nulstil for at starte forfra')
+    draws++
+    const element = document.getElementById('numberDraws');
+    element.innerHTML = draws;
+  }
 }
 
 
@@ -193,8 +201,11 @@ boardElements[i].className = ''
 function resetScore() {
   xWins = 0
   oWins = 0
+  draws = 0
   const element = document.getElementById('numberOfXWins');
   element.innerHTML = xWins;
   const element1 = document.getElementById('numberOfOWins');
   element1.innerHTML = oWins;
+  const element2 = document.getElementById('numberDraws');
+  element2.innerHTML = draws;
 }
